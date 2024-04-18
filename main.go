@@ -201,7 +201,7 @@ func preprocess(A [][]float64, b, c []float64, signs []string, minmax string) []
 	return simplexTableau
 }
 
-func сomputeDeltas(simplexTableau [][]float64) []float64 {
+func computeDeltas(simplexTableau [][]float64) []float64 {
 	bVars_index := []int{}
 	// Снова проверка на базисность
 	for i := 0; i < len(simplexTableau)-1; i++ {
@@ -307,7 +307,6 @@ func computeAnswer(matrix [][]float64) {
 	fmt.Printf("Ответ: %sF = %.5g", pretty_ansArray, targetF)
 }
 
-// TODO добавить переключатель min/max
 func simplex(matrix [][]float64, maxOrmin string) {
 	var indexOfMinB, indexOfMinA, indexOfMinD int
 	var minB float64 = math.MaxFloat64
@@ -375,7 +374,7 @@ func simplex(matrix [][]float64, maxOrmin string) {
 	// Вычисление дельты для первой итерации и ее отрисовка
 	fmt.Println("Обновляем таблицу, добавляя к нем строку с дельтами")
 	printTableau(matrix)
-	deltas := сomputeDeltas(matrix)
+	deltas := computeDeltas(matrix)
 
 	minD := math.MaxFloat64
 	// Найти разрешающий столбец (Минимальную дельту)
@@ -486,7 +485,7 @@ func simplex(matrix [][]float64, maxOrmin string) {
 		// Вычисление дельты для итерации и ее отрисовка
 		fmt.Println("Обновляем таблицу, добавляя к ней строку с дельтами")
 		printTableauWithQ(matrix, arrQ, indexOfQ)
-		deltas = сomputeDeltas(matrix)
+		deltas = computeDeltas(matrix)
 
 		// Найти разрешающий столбец (Минимальную дельту)
 		minD = math.MaxFloat64
@@ -629,6 +628,6 @@ func example8() {
 }
 
 func main() {
-	example7()
+	example8()
 
 }
